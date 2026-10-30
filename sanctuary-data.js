@@ -284,6 +284,13 @@ window.SANCTUARY_LIBRARY = {
       deities: ["heritage", "shiva"],
       context: "Rock-cut Kailasa temple and cave complex at Ellora.",
       profile: "Show the monolithic rock-cut temple excavated from basalt, with courtyard, carved walls and rock-cut scale. Dominant weathered dark basalt, natural shadow and Deccan plateau light; never portray the complex as assembled marble or a painted freestanding temple."
+    },
+    {
+      name: "Ajanta Caves — Maharashtra",
+      place: "Ajanta, Maharashtra",
+      deities: ["heritage"],
+      context: "Buddhist rock-cut cave complex in the Waghora River gorge, renowned for its chaitya halls, monasteries and ancient murals.",
+      profile: "Show Ajanta's horseshoe-shaped basalt escarpment above the Waghora gorge, with rock-cut cave façades and the forested Deccan ravine. For cave interiors, use subdued natural darkness and restrained, weathered mural pigments; preserve the distinction between chaitya halls and monastic viharas. Do not invent intact, brightly saturated murals, add temple gopurams, or imply flash-lit conservation interiors."
     }
   ],
   existingCategories: {
