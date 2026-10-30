@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090b10">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>SANATAN CINEMATIC IMAGE PROMPT STUDIO V4.2</title>
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+<div class="app">
+  <header class="hero">
+    <div>
+      <div class="eyebrow">SANATAN VISUAL PRODUCTION SYSTEM</div>
+      <h1>Prompt Studio <span style="color:var(--gold)">V4.2</span></h1>
+      <p>Model-aware image prompts that enhance each sacred destination’s real identity without redesigning, recolouring or genericising it.</p>
+    </div>
+    <div class="version">V4.2 • MOBILE-READY</div>
+  </header>
+
+  <div class="statusbar">
+    <div class="status"><small>Destination</small><b id="statusDestination">Golden Temple — Amritsar</b></div>
+    <div class="status"><small>Platform</small><b id="statusPlatform">YouTube Shorts • 1080 × 1920 • 9:16</b></div>
+    <div class="status"><small>Brand</small><b id="statusBrand">IBD</b></div>
+    <div class="status"><small>Hooks</small><b id="statusHooks">1 selected</b></div>
+  </div>
+
+  <main class="layout">
+    <aside class="panel controls">
+      <details class="section" open>
+        <summary class="section-title"><b>01 • Sacred destination</b><span>Choose your place</span></summary>
+        <div class="field"><label>Sacred destination</label>
+          <select id="destination">
+            <option>Golden Temple — Amritsar</option><option>Somnath — Gujarat</option><option>Mallikarjuna — Srisailam</option><option>Takht Sri Patna Sahib — Patna</option>
+            <option>Gurudwara Bangla Sahib — Delhi</option><option>Jagannath Temple — Puri</option>
+            <option>Ram Mandir — Ayodhya</option><option>Hanuman Garhi — Ayodhya</option>
+            <option>Mahakaleshwar — Ujjain</option><option>Kashi Vishwanath — Varanasi</option><option>Trimbakeshwar — Nashik</option><option>Vaidyanath — Deoghar</option>
+            <option>Dwarkadhish Temple — Dwarka</option><option>Nageshwar — Dwarka</option><option>Rameshwaram — Tamil Nadu</option><option>Grishneshwar — Ellora</option>
+            <option>Omkareshwar — Madhya Pradesh</option><option>Kedarnath — Uttarakhand</option><option>Bhimashankar — Maharashtra</option><option>Banke Bihari Temple — Vrindavan</option>
+            <option>Prem Mandir — Vrindavan</option><option>Shri Krishna Janmabhoomi — Mathura</option>
+            <option>Chitrakoot — Madhya Pradesh/Uttar Pradesh</option><option>Maa Sharda Devi — Maihar</option>
+            <option>Janaki Mandir — Janakpur</option><option>Janaki Temple — Sitamarhi</option>
+            <option>Khajuraho Temples — Madhya Pradesh</option><option>Konark Sun Temple — Odisha</option>
+            <option>Custom Destination</option>
+          </select>
+        </div>
+        <div class="field" id="customDestinationWrap" style="display:none">
+          <label for="customDestination">Custom destination</label>
+          <input id="customDestination" placeholder="Enter destination / heritage site">
+          <label for="customDestinationDetails">Destination-specific reference details</label>
+          <textarea id="customDestinationDetails" placeholder="Add verified architecture, dominant material and colours, regional details, local landscape, patina and lighting references. Unknown details will be flagged, not guessed."></textarea>
+        </div>
+      </details>
+        <details class="jyotirlinga-card panel">
+          <summary class="section-head"><div><div class="eyebrow">12 SACRED DESTINATIONS</div><h3 id="jyotirlingaTitle">Choose a Jyotirlinga</h3><div class="muted">Optional quick selection • syncs destination and accuracy lock</div></div><span class="status-pill" id="jyStatus">READY</span></summary>
+          <div class="jyotirlinga-grid" id="jyotirlingaGrid" role="group" aria-label="Choose one of the twelve Jyotirlingas"></div>
+          <div class="jy-nextbar"><button class="secondary-btn" id="jyPrev" type="button">← Previous</button><span class="step-indicator">Shrine <strong id="jyStep">01</strong> / 12</span><button class="primary-btn" id="jyNext" type="button">Next →</button></div>
+        </details>
+
+      <details class="section" open>
+        <summary class="section-title"><b>02 • Destination identity</b><span>Review accuracy profile</span></summary>
+        <div class="qa" id="accuracyCard"><b>DESTINATION IDENTITY LOCK</b><br>Cinematic treatment may enhance the real destination; it must not redesign, recolour or genericise it.</div>
+      </details>
+      <details class="section">
+        <summary class="section-title"><b>03 • Visual style</b><span>Optional refinement</span></summary>
+        <div class="chips" id="grammar">
+          <button class="chip active" type="button">Natural-Light Spiritual Cinema</button>
+          <button class="chip" type="button">Large-Format Textured Realism</button>
+          <button class="chip" type="button">Epic Indian Heritage</button>
+          <button class="chip" type="button">Documentary National-History</button>
+          <button class="chip" type="button">Premium OTT Drama</button>
+        </div>
+        <div class="field"><label>Visual ecosystem</label><select id="ecosystem"><option>OTT Premium</option><option>Large Format Cinema</option><option>National Geographic</option><option>Natural History</option><option>Archaeological</option><option>Devotional</option><option>Travel Editorial</option></select></div>
+      </details>
+
+      <details class="section">
+        <summary class="section-title"><b>04 • Model, camera & light</b><span>Optional refinement</span></summary>
+        <div class="field"><label for="imageModel">Prompt target</label><select id="imageModel">
+          <option value="openai">OpenAI Images / ChatGPT</option>
+          <option value="midjourney">Midjourney</option>
+          <option value="flux">FLUX</option>
+          <option value="sdxl">Stable Diffusion XL</option>
+        </select></div>
+        <div class="field"><label for="visualTreatment">Visual treatment</label><select id="visualTreatment">
+          <option value="photoreal">Photoreal cinematic still</option>
+          <option value="fine-art">Fine-art devotional painting</option>
+          <option value="editorial">Premium travel editorial</option>
+        </select></div>
+        <div class="field"><label>Camera / DoP system</label><select id="camera"><option>ARRI Alexa 65</option><option>RED V-RAPTOR XL</option><option>Sony VENICE 2</option><option>ARRI Alexa 35</option></select></div>
+        <div class="field"><label>Lens</label><select id="lens"><option>24mm wide prime</option><option>35mm prime</option><option>50mm prime</option><option>85mm portrait prime</option><option>135mm telephoto</option></select></div>
+        <div class="field"><label>Angle / framing</label><select id="angle"><option>Establishing wide, eye level</option><option>Low-angle monumental</option><option>Aerial drone reveal</option><option>Water-level reflection</option><option>Telephoto compression</option><option>Intimate architectural detail</option><option>Through-arch framing</option></select></div>
+        <div class="field"><label>Lighting</label>
+          <div class="chips" id="lighting"><button class="chip active" type="button">Golden Hour</button><button class="chip" type="button">Dawn Mist</button><button class="chip" type="button">Blue Hour</button><button class="chip" type="button">Temple Lamps</button><button class="chip" type="button">Moonlight</button><button class="chip" type="button">Monsoon Diffusion</button><button class="chip" type="button">Volumetric Rays</button></div>
+        </div>
+      </details>
+
+      <details class="section">
+        <summary class="section-title"><b>05 • Output format</b><span>Aspect ratio & size</span></summary>
+        <div class="platform-grid" id="platformButtons">
+          <button type="button" class="platform-btn active" data-id="yts"><b>YouTube Shorts</b><strong>1080 × 1920</strong><small>9:16 • Vertical</small></button>
+          <button type="button" class="platform-btn" data-id="igfeed"><b>Instagram Feed</b><strong>1080 × 1350</strong><small>4:5 • Portrait</small></button>
+          <button type="button" class="platform-btn" data-id="square"><b>Instagram / Social</b><strong>1080 × 1080</strong><small>1:1 • Square</small></button>
+          <button type="button" class="platform-btn" data-id="yt"><b>YouTube Landscape</b><strong>1280 × 720</strong><small>16:9 • Landscape</small></button>
+          <button type="button" class="platform-btn" data-id="uhd"><b>UHD / 4K</b><strong>3840 × 2160</strong><small>16:9 • Master</small></button>
+          <button type="button" class="platform-btn" data-id="pin"><b>Pinterest / Poster</b><strong>1000 × 1500</strong><small>2:3 • Portrait</small></button>
+        </div>
+        <div class="selected" id="selectedPlatform">SELECTED: <b>YouTube Shorts • 1080 × 1920 px • 9:16</b></div>
+      </details>
+
+      <details class="section">
+        <summary class="section-title"><b>06 • Branding</b><span>Optional</span></summary>
+        <div class="chips" id="brandModes">
+          <button class="chip active" type="button" data-brand="IBD">IBD</button>
+          <button class="chip" type="button" data-brand="ASP">ASP</button>
+          <button class="chip" type="button" data-brand="IBD_ASP">IBD + ASP</button>
+          <button class="chip" type="button" data-brand="NONE">NONE</button>
+        </div>
+        <div class="brand-preview" id="brandPreview"><b>IBD — An Indian Bhakti Dhara Production</b><span>Bottom-centre safe zone • fully visible • readable • unobstructed</span></div>
+      </details>
+
+      <details class="section">
+        <summary class="section-title"><b>07 • Hook & text</b><span>Optional</span></summary>
+        <div class="hook-modes" id="hookModes">
+          <button class="mode" data-mode="none" type="button">NO HOOK</button>
+          <button class="mode active" data-mode="single" type="button">SINGLE</button>
+          <button class="mode" data-mode="multi" type="button">MULTI-HOOK</button>
+        </div>
+        <div class="field"><label>Language</label><div class="chips" id="hookLangs"><button class="chip active" data-lang="english" type="button">ENGLISH</button><button class="chip" data-lang="hindi" type="button">हिंदी</button><button class="chip" data-lang="hinglish" type="button">HINGLISH</button></div></div>
+        <div class="field"><label>Hook category</label><select id="hookStyle"><option value="curiosity">Curiosity / सवाल</option><option value="devotional">Devotional / भक्ति</option><option value="wisdom">Wisdom / ज्ञान</option><option value="travel">Travel / Darshan</option><option value="mystery">Mystery / रहस्य</option><option value="emotional">Emotional / भावना</option></select></div>
+        <div class="hook-tools"><button class="mini-btn" id="regenHooks" type="button">↻ New Hooks</button><button class="mini-btn" id="selectAllHooks" type="button">Select All</button></div>
+        <div class="hook-list" id="hookList"></div>
+        <div class="field"><label>Custom hook</label><input id="customHook" placeholder="Optional — custom text overrides generated hook"></div>
+        <div class="hook-preview" id="hookPreview"><span>HOOK PREVIEW</span><strong>What makes this sacred place unforgettable?</strong></div>
+      </details>
+
+      <details class="section">
+        <summary class="section-title"><b>08 • Scene & creative direction</b><span>Optional</span></summary>
+        <div class="chips" id="vfx"><button class="chip active" type="button">Reality-first</button><button class="chip" type="button">Subtle Atmosphere</button><button class="chip" type="button">Cinematic VFX</button><button class="chip" type="button">Cosmic Accent</button></div>
+        <div class="field"><label for="sceneBrief">Scene brief</label><textarea id="sceneBrief" placeholder="What is happening in this frame? Add the subject, moment, foreground details or story beat."></textarea></div>
+        <div class="field"><label for="custom">Additional creative direction</label><textarea id="custom" placeholder="Mood, festival, season, weather, colour accents or other refinements..."></textarea></div>
+      </details>
+
+      <details class="section">
+        <summary class="section-title"><b>09 • Prompt structure</b><span>Choose output detail</span></summary>
+        <div class="chips" id="outputModes"><button class="chip active" data-mode="darshan5" type="button">5-PART DARSHAN</button><button class="chip" data-mode="compact" type="button">COMPACT</button></div>
+      </details>
+
+      <div class="qa"><b>PRE-FLIGHT QA CHECKLIST</b><br>
+        Destination identity • architecture • geography • cultural accuracy • natural materials • anatomy • physically motivated VFX • typography • branding • exact platform dimensions • single image only. Any failure = REJECT / REGENERATE.</div>
+
+      <div class="actions">
+        <button class="primary" type="button" id="generateBtn">⚡ Generate Prompts</button>
+        <button class="secondary" type="button" id="copyAllBtn">📋 Copy All</button>
+      </div>
+    </aside>
+
+    <section class="panel output" id="outputPanel">
+      <div class="output-head">
+        <div><h2>GENERATED PRODUCTION PROMPTS</h2><p>3 independent cinematic variations • formatted for your selected image model</p></div>
+        <div class="badge">CULTURAL ACCURACY CHECKLIST</div>
+      </div>
+      <div class="previewbar">
+        <div class="preview"><small>LIVE CONFIGURATION</small><b id="liveConfig">Golden Temple — Amritsar • YouTube Shorts • IBD • 1 hook</b></div>
+        <div class="export-actions"><button class="secondary copyall" type="button" id="copyMasterBtn">📋 COPY MASTER</button><button class="secondary copyall" type="button" id="downloadBtn">↓ DOWNLOAD .TXT</button></div>
+      </div>
+      <div id="results">
+        <div class="empty">Choose a destination and tap <b>Generate prompts</b>.</div>
+      </div>
+    </section>
+  </main>
+  <div class="footer">SANATAN CINEMATIC IMAGE PROMPT STUDIO V4.2 • DESTINATION IDENTITY LOCK • MODEL-AWARE OUTPUT • CULTURAL ACCURACY • SINGLE-IMAGE QA</div>
+</div>
+<div class="toast" id="toast"></div>
+<div class="mobile-actionbar"><button class="primary" type="button" id="mobileGenerateBtn">⚡ Generate & View Results</button></div>
+
+<script src="app.js" defer></script></body>
+</html>
