@@ -18,7 +18,7 @@ No npm install or build step is needed.
 - Photoreal cinematic, fine-art devotional and travel-editorial visual treatments.
 - Scene brief input for the focal moment, subject and environmental details.
 - Destination identity lock for encoded architecture, primary material and palette, accent-colour proportions, regional landscape, natural patina and physically plausible lighting.
-- All 28 preset destinations have destination-specific profiles; custom destinations provide a reference-details field and are clearly marked unverified by the built-in library.
+- Every built-in destination has a destination-specific profile; custom destinations provide a reference-details field and are clearly marked unverified by the library.
 - Collapsible setting groups keep the workspace compact; a fixed mobile generate action takes users directly to results.
 - Existing Jyotirlinga selector, multi-hook engine, platform dimensions, branding, camera, lighting and VFX controls.
 - Copy per variation, copy all, and download generated prompts as plain text.
@@ -30,11 +30,8 @@ Image-generation interfaces and supported settings change over time. Treat model
 
 The destination collection is curated, not exhaustive. Ramayana route markers and cross-border pilgrimage associations are presented as traditional sacred geography, not as proof of a single historically established itinerary or archaeological identification. Broad regions such as Dandakaranya are not represented as one exact site.
 
-`original-v3.3.html` is the untouched source supplied in the original archive.
+Sacred geography and deity categories are curated guidance rather than an exhaustive directory.
 
-## Publish with GitHub Pages
+## Live site
 
-1. Create a **public** GitHub repository and upload `index.html`, `styles.css`, `app.js`, and this `README.md` to the repository root.
-2. In the repository, open **Settings → Pages**.
-3. Under **Build and deployment**, choose **Deploy from a branch**, select `main` and `/(root)`, then save.
-4. After the Pages deployment finishes, open `https://<your-username>.github.io/<repository-name>/`.
+The public app is hosted on [GitHub Pages](https://indianbhaktidhara.github.io/Sanatan-Cinematic-Prompt-Studio/).
