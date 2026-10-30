@@ -1,4 +1,4 @@
-# Sanatan Cinematic Image Prompt Studio V4.2
+# Sanatan Cinematic Image Prompt Studio V5.0
 
 A no-build, no-dependency browser app for creating premium cinematic image prompts grounded in sacred-site architecture, materials and regional colour. It generates text prompts; it does not call an image-generation service or require an API key.
 
@@ -22,8 +22,13 @@ No npm install or build step is needed.
 - Collapsible setting groups keep the workspace compact; a fixed mobile generate action takes users directly to results.
 - Existing Jyotirlinga selector, multi-hook engine, platform dimensions, branding, camera, lighting and VFX controls.
 - Copy per variation, copy all, and download generated prompts as plain text.
+- Deity and heritage filters for Ram/Ramayana, Krishna and Braj, Shiva, Vishnu, Lakshmi, Saraswati, Hanuman and Indian architectural heritage.
+- A 17-stop traditional Ramayana pilgrimage narrative from Ayodhya through Mithila, exile, Dandakaranya, Kishkindha, the southern coast and Lanka-associated pilgrimage places, then back to Ayodhya.
+- Distinct site profiles for Konark, Khajuraho, Hampi, Ellora, Modhera and additional major temples across India, Nepal and Sri Lanka.
 
 Image-generation interfaces and supported settings change over time. Treat model-specific delivery notes as starting guidance and confirm options in the selected image tool. Destination profiles and user-provided references are prompt guidance, not automated factual verification; review the final image against reliable references.
+
+The destination collection is curated, not exhaustive. Ramayana route markers and cross-border pilgrimage associations are presented as traditional sacred geography, not as proof of a single historically established itinerary or archaeological identification. Broad regions such as Dandakaranya are not represented as one exact site.
 
 `original-v3.3.html` is the untouched source supplied in the original archive.
 

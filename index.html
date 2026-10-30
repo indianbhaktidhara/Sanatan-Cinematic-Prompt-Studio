@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#090b10">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>SANATAN CINEMATIC IMAGE PROMPT STUDIO V4.2</title>
+<title>SANATAN CINEMATIC IMAGE PROMPT STUDIO V5.0</title>
 <link rel="stylesheet" href="styles.css">
 
 </head>
@@ -15,10 +15,10 @@
   <header class="hero">
     <div>
       <div class="eyebrow">SANATAN VISUAL PRODUCTION SYSTEM</div>
-      <h1>Prompt Studio <span style="color:var(--gold)">V4.2</span></h1>
+      <h1>Prompt Studio <span style="color:var(--gold)">V5.0</span></h1>
       <p>Model-aware image prompts that enhance each sacred destination’s real identity without redesigning, recolouring or genericising it.</p>
     </div>
-    <div class="version">V4.2 • MOBILE-READY</div>
+    <div class="version">V5.0 • SACRED PLACE LIBRARY</div>
   </header>
 
   <div class="statusbar">
@@ -33,6 +33,7 @@
       <details class="section" open>
         <summary class="section-title"><b>01 • Sacred destination</b><span>Choose your place</span></summary>
         <div class="field"><label>Sacred destination</label>
+          <div class="destination-filters" id="destinationFilters" aria-label="Filter sacred places"></div>
           <select id="destination">
             <option>Golden Temple — Amritsar</option><option>Somnath — Gujarat</option><option>Mallikarjuna — Srisailam</option><option>Takht Sri Patna Sahib — Patna</option>
             <option>Gurudwara Bangla Sahib — Delhi</option><option>Jagannath Temple — Puri</option>
@@ -46,6 +47,13 @@
             <option>Khajuraho Temples — Madhya Pradesh</option><option>Konark Sun Temple — Odisha</option>
             <option>Custom Destination</option>
           </select>
+        </div>
+        <div class="journey-card" id="ramayanaJourney">
+          <div class="journey-heading"><div><b>RAMAYANA LIFE JOURNEY</b><span>Traditional pilgrimage route • select a stop</span></div><span class="journey-step" id="journeyStep">01 / 17</span></div>
+          <label class="sr-only" for="journeySelect">Ramayana journey stop</label>
+          <select id="journeySelect"></select>
+          <div class="journey-note" id="journeyNote"></div>
+          <div class="journey-actions"><button class="mini-btn" id="journeyPrev" type="button">← Previous</button><button class="mini-btn" id="journeyNext" type="button">Next stop →</button></div>
         </div>
         <div class="field" id="customDestinationWrap" style="display:none">
           <label for="customDestination">Custom destination</label>
@@ -171,10 +179,11 @@
       </div>
     </section>
   </main>
-  <div class="footer">SANATAN CINEMATIC IMAGE PROMPT STUDIO V4.2 • DESTINATION IDENTITY LOCK • MODEL-AWARE OUTPUT • CULTURAL ACCURACY • SINGLE-IMAGE QA</div>
+  <div class="footer">SANATAN CINEMATIC IMAGE PROMPT STUDIO V5.0 • DEITY & EPIC PLACE LIBRARY • DESTINATION IDENTITY LOCK • SINGLE-IMAGE QA</div>
 </div>
 <div class="toast" id="toast"></div>
 <div class="mobile-actionbar"><button class="primary" type="button" id="mobileGenerateBtn">⚡ Generate & View Results</button></div>
 
+<script src="sanctuary-data.js" defer></script>
 <script src="app.js" defer></script></body>
 </html>

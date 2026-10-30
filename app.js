@@ -80,12 +80,60 @@ const HOOKS={
 
 let state={
  platform:"yts",brand:"IBD",hookMode:"single",hookLang:"english",hookStyle:"curiosity",
- hooks:[],grammar:"Natural-Light Spiritual Cinema",vfx:"Reality-first",outputMode:"darshan5"
+ hooks:[],grammar:"Natural-Light Spiritual Cinema",vfx:"Reality-first",outputMode:"darshan5",destinationCategory:"all"
 };
 
 function esc(s){return String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
 function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(window._toast);window._toast=setTimeout(()=>t.classList.remove("show"),1300)}
 function activeText(id){return document.querySelector("#"+id+" .chip.active")?.textContent?.trim()||""}
+const LIBRARY=window.SANCTUARY_LIBRARY;
+Object.assign(DEST,Object.fromEntries(LIBRARY.additions.map(entry=>[entry.name,entry.context])));
+Object.assign(SACRED_PROFILES,Object.fromEntries(LIBRARY.additions.map(entry=>[entry.name,entry.profile])));
+const DESTINATION_CATEGORIES={...LIBRARY.existingCategories};
+LIBRARY.additions.forEach(entry=>{DESTINATION_CATEGORIES[entry.name]=entry.deities});
+const destinationSelect=document.getElementById("destination");
+const BASE_DESTINATIONS=[...destinationSelect.options].map(option=>({value:option.value,label:option.textContent}));
+LIBRARY.additions.forEach(entry=>BASE_DESTINATIONS.push({value:entry.name,label:entry.name+" • "+entry.place}));
+const RAMAYANA_ROUTE=LIBRARY.ramayanaRoute;
+let activeJourneyIndex=0;
+function categoriesForDestination(name){return DESTINATION_CATEGORIES[name]||[]}
+function setDestinationCategory(category,preferredDestination){
+ state.destinationCategory=category;
+ document.querySelectorAll("[data-destination-category]").forEach(button=>{
+  const active=button.dataset.destinationCategory===category;
+  button.classList.toggle("active",active);
+  button.setAttribute("aria-pressed",String(active));
+ });
+ const matches=BASE_DESTINATIONS.filter(option=>option.value==="Custom Destination"
+  ? category==="all"
+  : category==="all"||categoriesForDestination(option.value).includes(category));
+ const current=preferredDestination||destinationSelect.value;
+ const next=matches.some(option=>option.value===current)?current:(matches[0]?.value||"Custom Destination");
+ destinationSelect.replaceChildren(...matches.map(option=>{
+  const element=document.createElement("option");
+  element.value=option.value;
+  element.textContent=option.label;
+  return element;
+ }));
+ destinationSelect.value=next;
+ const custom=destinationSelect.value==="Custom Destination";
+ document.getElementById("customDestinationWrap").style.display=custom?"grid":"none";
+ document.getElementById("ramayanaJourney").hidden=category!=="ramayana";
+ updateUI();
+}
+function renderJourney(){
+ const select=document.getElementById("journeySelect");
+ select.innerHTML=RAMAYANA_ROUTE.map((step,index)=>`<option value="${index}">${String(index+1).padStart(2,"0")} · ${esc(step.stage)} — ${esc(step.destination)}</option>`).join("");
+ select.value=String(activeJourneyIndex);
+ document.getElementById("journeyStep").textContent=String(activeJourneyIndex+1).padStart(2,"0")+" / "+RAMAYANA_ROUTE.length;
+ document.getElementById("journeyNote").textContent=RAMAYANA_ROUTE[activeJourneyIndex].note;
+}
+function selectJourneyStop(index){
+ activeJourneyIndex=(index+RAMAYANA_ROUTE.length)%RAMAYANA_ROUTE.length;
+ const step=RAMAYANA_ROUTE[activeJourneyIndex];
+ setDestinationCategory("ramayana",step.destination);
+ renderJourney();
+}
 function destination(){
  const d=document.getElementById("destination").value;
  return d==="Custom Destination" ? (document.getElementById("customDestination").value.trim()||"Custom sacred destination") : d;
@@ -184,7 +232,9 @@ function basePrompt(type,hook){
   ? "CUSTOM DESTINATION ACCURACY CAVEAT: this location is not verified by the built-in destination library. Use only the destination-specific reference details supplied below; do not assume or invent its architecture, palette, materials, landscape, regional details or lighting. Verify against reliable visual references before use."
   : "";
  const customReference=referenceDetails?"USER-SUPPLIED DESTINATION REFERENCE DETAILS (verify before use): "+referenceDetails+".":"";
- return `${treatment} of ${d}. ${context}. ${profile ? ("ENCODED DESTINATION PROFILE: "+profile) : "No verified destination profile is available; preserve only reference details explicitly supplied and flag unknown details for human verification."} ${customReference} ${identityRule} ${customWarning} ${mood}. ${grammar} visual grammar, ${eco} delivery. Camera: ${camera}; lens: ${lens}; framing: ${angle}; lighting: ${light}. Authentic regional materials with visible pores, tool marks, plausible metal reflections, natural fabric weave, botanical variation and physically correct water response. Natural weathering only where appropriate to the site; do not add artificial decay. ${scene?"SCENE BRIEF: "+scene+". ":""}${vfx} VFX: motivated volumetric atmosphere, physically based materials, realistic global illumination, restrained haze, subtle film grain and natural highlight roll-off. ${custom?custom+". ":""}Create one cohesive image in ${p.ratio} aspect ratio for ${p.size}; no collage, no grid, no multiple panels. ${hookInstruction(hook?[hook]:[])} ${brandInstruction()}`;
+ const routeStep=state.destinationCategory==="ramayana"?RAMAYANA_ROUTE.find(step=>step.destination===selectedDestination):null;
+ const routeContext=routeStep?"TRADITIONAL RAMAYANA JOURNEY — "+routeStep.stage+": "+routeStep.note:"";
+ return `${treatment} of ${d}. ${context}. ${profile ? ("ENCODED DESTINATION PROFILE: "+profile) : "No verified destination profile is available; preserve only reference details explicitly supplied and flag unknown details for human verification."} ${customReference} ${routeContext} ${identityRule} ${customWarning} ${mood}. ${grammar} visual grammar, ${eco} delivery. Camera: ${camera}; lens: ${lens}; framing: ${angle}; lighting: ${light}. Authentic regional materials with visible pores, tool marks, plausible metal reflections, natural fabric weave, botanical variation and physically correct water response. Natural weathering only where appropriate to the site; do not add artificial decay. ${scene?"SCENE BRIEF: "+scene+". ":""}${vfx} VFX: motivated volumetric atmosphere, physically based materials, realistic global illumination, restrained haze, subtle film grain and natural highlight roll-off. ${custom?custom+". ":""}Create one cohesive image in ${p.ratio} aspect ratio for ${p.size}; no collage, no grid, no multiple panels. ${hookInstruction(hook?[hook]:[])} ${brandInstruction()}`;
 }
 function negative(){
  return `incorrect architectural colour, recoloured façade, generic temple palette, fake painted stone, colour grading that changes the real building colour, plastic or wax surfaces, CGI-looking materials, fake HDR, oversharpening, excessive bloom, flat or muddy light, floating objects, impossible physics, wrong perspective, clutter, wires, scaffolding, modern signboards, garbled or fake text, distorted faces or eyes, malformed hands, extra limbs, duplicated subjects, low resolution, blur, oversaturated neon, cartoon, anime, tourists posing with phones, disrespectful poses, incorrect architecture, invented sacred details, wrong religious symbols, unwanted watermark, unwanted logo, border, UI artifacts, collage, grid, multiple panels`;
@@ -326,6 +376,8 @@ document.querySelectorAll("#grammar .chip,#lighting .chip,#vfx .chip").forEach(b
 }));
 document.getElementById("destination").addEventListener("change",e=>{
  document.getElementById("customDestinationWrap").style.display=e.target.value==="Custom Destination"?"grid":"none";updateUI();
+ const routeIndex=RAMAYANA_ROUTE.findIndex(step=>step.destination===e.target.value);
+ if(routeIndex>=0){activeJourneyIndex=routeIndex;renderJourney()}
 });
 document.getElementById("customDestination").addEventListener("input",updateUI);
 document.querySelectorAll(".platform-btn").forEach(b=>b.addEventListener("click",()=>{
@@ -356,10 +408,22 @@ document.getElementById("selectAllHooks").addEventListener("click",()=>{
  document.querySelectorAll("#hookList input").forEach(x=>x.checked=true);updateUI();
 });
 document.getElementById("customHook").addEventListener("input",updateUI);
+document.getElementById("destinationFilters").innerHTML=LIBRARY.categories.map(category=>
+ `<button class="chip destination-filter${category.id==="all"?" active":""}" type="button" data-destination-category="${category.id}" aria-pressed="${category.id==="all"}">${esc(category.label)}</button>`
+).join("");
+document.getElementById("destinationFilters").addEventListener("click",event=>{
+ const button=event.target.closest("[data-destination-category]");
+ if(button)setDestinationCategory(button.dataset.destinationCategory);
+});
+document.getElementById("journeySelect").addEventListener("change",event=>selectJourneyStop(Number(event.target.value)));
+document.getElementById("journeyPrev").addEventListener("click",()=>selectJourneyStop(activeJourneyIndex-1));
+document.getElementById("journeyNext").addEventListener("click",()=>selectJourneyStop(activeJourneyIndex+1));
 ["imageModel","visualTreatment","sceneBrief","custom","customDestinationDetails","camera","lens","angle","ecosystem"].forEach(id=>{
  document.getElementById(id).addEventListener("change",updateUI);
  document.getElementById(id).addEventListener("input",updateUI);
 });
+renderJourney();
+setDestinationCategory("all",destinationSelect.value);
 refreshHooks();updateUI();generate();
 
 
@@ -383,9 +447,7 @@ let selectedJyotirlinga = 0;
 function selectJyotirlinga(index, shouldScroll = false) {
   selectedJyotirlinga = (index + JYOTIRLINGAS.length) % JYOTIRLINGAS.length;
   const shrine = JYOTIRLINGAS[selectedJyotirlinga];
-  const select = document.getElementById("destination");
-  select.value = shrine.destination;
-  document.getElementById("customDestinationWrap").style.display = "none";
+  setDestinationCategory("shiva",shrine.destination);
   document.querySelectorAll(".jy-card").forEach((card, i) => {
     const active = i === selectedJyotirlinga;
     card.classList.toggle("active", active);
